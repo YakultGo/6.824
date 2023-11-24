@@ -1,7 +1,7 @@
 package labrpc
 
 //
-// channel-based RPC, for 6.5840 labs.
+// channel-based RPC, for src labs.
 //
 // simulates a network that can lose requests, lose replies,
 // delay messages, and entirely disconnect particular hosts.
@@ -49,7 +49,7 @@ package labrpc
 //   pass svc to srv.AddService()
 //
 
-import "6.5840/labgob"
+import "src/labgob"
 import "bytes"
 import "reflect"
 import "sync"
