@@ -48,6 +48,21 @@ type ApplyMsg struct {
 	SnapshotTerm  int
 	SnapshotIndex int
 }
+type stateType int
+
+const (
+	Leader stateType = iota
+	Candidate
+	Follower
+)
+const (
+	heartBeatTime = 100 * time.Millisecond
+)
+
+type LogEntry struct {
+	Term    int
+	Command interface{}
+}
 
 // A Go object implementing a single Raft peer.
 type Raft struct {
@@ -60,7 +75,12 @@ type Raft struct {
 	// Your data here (2A, 2B, 2C).
 	// Look at the paper's Figure 2 for a description of what
 	// state a Raft server must maintain.
-
+	electionTime  time.Time  // 2A
+	heartbeatTime time.Time  // 2A
+	currentTerm   int        // 2A
+	state         stateType  // 2A
+	votedFor      int        // 2A
+	log           []LogEntry // 2A
 }
 
 // return currentTerm and whether this server
@@ -70,6 +90,12 @@ func (rf *Raft) GetState() (int, bool) {
 	var term int
 	var isleader bool
 	// Your code here (2A).
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	term = rf.currentTerm
+	if rf.state == Leader {
+		isleader = true
+	}
 	return term, isleader
 }
 
@@ -124,17 +150,88 @@ func (rf *Raft) Snapshot(index int, snapshot []byte) {
 // field names must start with capital letters!
 type RequestVoteArgs struct {
 	// Your data here (2A, 2B).
+	Term         int // 2A
+	CandidateId  int // 2A
+	LastLogIndex int // 2A
+	LastLogTerm  int // 2A
 }
 
 // example RequestVote RPC reply structure.
 // field names must start with capital letters!
 type RequestVoteReply struct {
 	// Your data here (2A).
+	Term        int  // 2A
+	VoteGranted bool // 2A
+}
+
+type AppendEntriesArgs struct {
+	Term   int // 2A
+	LeadId int // 2A
+	//PrevLogIndex int
+	//PrevLogTerm  int
+	//Entries      []LogEntry
+	//LeaderCommit int
+}
+type AppendEntriesReply struct {
+	Term    int  // 2A
+	Success bool // 2A
 }
 
 // example RequestVote RPC handler.
 func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	// Your code here (2A, 2B).
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	DPrintf("server %d receive RequestVote from server %d in term %d\n", rf.me, args.CandidateId, args.Term)
+	reply.Term = rf.currentTerm
+	reply.VoteGranted = false
+
+	if args.Term < rf.currentTerm {
+		// 如果请求的任期小于当前任期，则拒绝投票
+		return
+	}
+	if args.Term > rf.currentTerm {
+		// 如果请求的任期大于当前任期，则更新任期
+		rf.currentTerm = args.Term
+		rf.state = Follower
+		rf.votedFor = -1
+	}
+	if rf.votedFor == -1 || rf.votedFor == args.CandidateId {
+		// 如果当前节点没有投票或者已经投票给了请求的节点，则投票给请求的节点
+		lastLogTerm := 0
+		if len(rf.log) > 0 {
+			lastLogTerm = rf.log[len(rf.log)-1].Term
+		}
+		// 如果请求的日志任期大于当前节点的日志任期，则投票
+		// 如果请求的日志任期等于当前节点的日志任期，且请求的日志索引大于等于当前节点的日志索引，则投票
+		if args.LastLogTerm > lastLogTerm || (args.LastLogTerm == lastLogTerm && args.LastLogIndex >= len(rf.log)) {
+			reply.VoteGranted = true
+			rf.votedFor = args.CandidateId
+			// 重置选举超时时间
+			rf.resetElectionTime()
+			DPrintf("server %d vote for server %d in term %d\n", rf.me, args.CandidateId, args.Term)
+		}
+	}
+}
+
+func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply) {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	DPrintf("server %d receive AppendEntries from server %d in term %d\n", rf.me, args.LeadId, args.Term)
+	reply.Term = rf.currentTerm
+	reply.Success = false
+	// 如果请求的任期小于当前任期，则拒绝
+	if args.Term < rf.currentTerm {
+		return
+	}
+	// 如果请求的任期大于当前任期，则更新任期，并转为Follower
+	if args.Term > rf.currentTerm {
+		rf.currentTerm = args.Term
+		rf.state = Follower
+		rf.votedFor = -1
+	}
+	// 重置选举超时时间
+	rf.resetElectionTime()
 }
 
 // example code to send a RequestVote RPC to a server.
@@ -166,6 +263,11 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 // the struct itself.
 func (rf *Raft) sendRequestVote(server int, args *RequestVoteArgs, reply *RequestVoteReply) bool {
 	ok := rf.peers[server].Call("Raft.RequestVote", args, reply)
+	return ok
+}
+
+func (rf *Raft) sendAppendEntries(server int, args *AppendEntriesArgs, reply *AppendEntriesReply) bool {
+	ok := rf.peers[server].Call("Raft.AppendEntries", args, reply)
 	return ok
 }
 
@@ -209,13 +311,140 @@ func (rf *Raft) killed() bool {
 	z := atomic.LoadInt32(&rf.dead)
 	return z == 1
 }
-
+func (rf *Raft) appendEntriesTicker() {
+	for rf.killed() == false {
+		time.Sleep(time.Millisecond)
+		func() {
+			rf.mu.Lock()
+			// 1. 如果不是Leader，则不需要发送心跳
+			// 2. 如果上一次发送心跳的时间还没有超过心跳间隔，则不需要发送心跳
+			if rf.state != Leader || time.Now().Before(rf.heartbeatTime) {
+				rf.mu.Unlock()
+				return
+			}
+			// 重置心跳时间，当前时间加上100ms
+			rf.heartbeatTime = time.Now().Add(heartBeatTime)
+			// 释放锁，rpc调用过程中不应该持有锁
+			rf.mu.Unlock()
+			// 给其他节点发送心跳
+			for i := 0; i < len(rf.peers); i++ {
+				if i == rf.me {
+					continue
+				}
+				args := AppendEntriesArgs{
+					Term:   rf.currentTerm,
+					LeadId: rf.me,
+				}
+				DPrintf("server %d send heartbeat to server %d in term %d\n", rf.me, i, rf.currentTerm)
+				go func(server int, args *AppendEntriesArgs) {
+					reply := AppendEntriesReply{}
+					if ok := rf.sendAppendEntries(server, args, &reply); ok {
+						rf.mu.Lock()
+						if rf.currentTerm < reply.Term {
+							// 发现更高的任期，则转变为Follower
+							rf.state = Follower
+							rf.currentTerm = reply.Term
+							rf.votedFor = -1
+							DPrintf("server %d find higher term %d,so become Follower in term %d\n",
+								rf.me, reply.Term, rf.currentTerm)
+						}
+						rf.mu.Unlock()
+					}
+				}(i, &args)
+			}
+		}()
+	}
+}
 func (rf *Raft) ticker() {
 	for rf.killed() == false {
-
+		time.Sleep(time.Millisecond)
 		// Your code here (2A)
 		// Check if a leader election should be started.
-
+		func() {
+			rf.mu.Lock()
+			defer rf.mu.Unlock()
+			// 超时，本节点开启选举(Leader不用开始选举)
+			if rf.state != Leader && time.Now().After(rf.electionTime) {
+				// 更新选举超时时间
+				rf.resetElectionTime()
+				// 本节点变为候选人
+				rf.state = Candidate
+				// 将任期加1
+				rf.currentTerm++
+				// 投票给自己
+				rf.votedFor = rf.me
+				DPrintf("server %d start election, from Follower to Candidate in term %d\n", rf.me, rf.currentTerm)
+				lastLogIndex := len(rf.log)
+				lastLogTerm := 0
+				if lastLogIndex > 0 {
+					lastLogTerm = rf.log[lastLogIndex-1].Term
+				}
+				// rpc调用过程中，释放掉锁
+				rf.mu.Unlock()
+				args := RequestVoteArgs{
+					Term:         rf.currentTerm,
+					CandidateId:  rf.me,
+					LastLogIndex: lastLogIndex,
+					LastLogTerm:  lastLogTerm,
+				}
+				// 收到投票的数量
+				voteNum := 1
+				// 完成应答的数量
+				finishNum := 1
+				// 使用通道保存应答的结果
+				voteResult := make(chan *RequestVoteReply, len(rf.peers)-1)
+				// 向其他节点发送投票请求
+				for i := 0; i < len(rf.peers); i++ {
+					if i == rf.me {
+						continue
+					}
+					go func(server int) {
+						reply := RequestVoteReply{}
+						if ok := rf.sendRequestVote(server, &args, &reply); ok {
+							voteResult <- &reply
+						} else {
+							voteResult <- nil
+						}
+					}(i)
+				}
+				// 统计投票结果
+				otherTerm := 0
+				done := false
+				for !done {
+					select {
+					case reply := <-voteResult:
+						// 更新收到的结果
+						finishNum += 1
+						if reply != nil {
+							if reply.VoteGranted {
+								voteNum += 1
+							}
+							otherTerm = max(otherTerm, reply.Term)
+						}
+						// 如果全部应答或者已经获得大多数投票，则结束
+						if finishNum == len(rf.peers) || voteNum > len(rf.peers)/2 {
+							// 退出循环
+							done = true
+						}
+					}
+				}
+				rf.mu.Lock()
+				// 如果当前节点已经不是Candidate，则说明有其他节点已经成为Leader
+				if rf.state != Candidate {
+					return
+				} else if rf.currentTerm < otherTerm {
+					// 如果收到的投票中有更高的任期，则转变为Follower
+					rf.state = Follower
+					rf.currentTerm = otherTerm
+					rf.votedFor = -1
+					DPrintf("server %d become Follower in term %d\n", rf.me, rf.currentTerm)
+				} else if voteNum > len(rf.peers)/2 {
+					// 如果获得大多数投票，则转变为Leader
+					rf.state = Leader
+					DPrintf("server %d become Leader in term %d\n", rf.me, rf.currentTerm)
+				}
+			}
+		}()
 		// pause for a random amount of time between 50 and 350
 		// milliseconds.
 		ms := 50 + (rand.Int63() % 300)
@@ -240,12 +469,23 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.me = me
 
 	// Your initialization code here (2A, 2B, 2C).
-
+	rf.state = Follower
+	rf.votedFor = -1
+	rf.currentTerm = 0
+	rf.resetElectionTime()
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
 
 	// start ticker goroutine to start elections
 	go rf.ticker()
-
+	// 启动心跳协程
+	go rf.appendEntriesTicker()
+	DPrintf("server %d start\n", rf.me)
 	return rf
+}
+
+func (rf *Raft) resetElectionTime() {
+	// 下一次超时在300-500ms之后
+	ms := 300 + (rand.Int63() % 200)
+	rf.electionTime = time.Now().Add(time.Millisecond * time.Duration(ms))
 }
