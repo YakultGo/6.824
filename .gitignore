@@ -2,3 +2,4 @@
 .DS_Store
 /src/.idea
 /lec4
+*.so
