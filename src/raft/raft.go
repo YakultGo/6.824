@@ -18,6 +18,9 @@ package raft
 //
 
 import (
+	"bytes"
+	"src/labgob"
+
 	//	"bytes"
 	"math/rand"
 	"slices"
@@ -113,13 +116,14 @@ func (rf *Raft) GetState() (int, bool) {
 // (or nil if there's not yet a snapshot).
 func (rf *Raft) persist() {
 	// Your code here (2C).
-	// Example:
-	// w := new(bytes.Buffer)
-	// e := labgob.NewEncoder(w)
-	// e.Encode(rf.xxx)
-	// e.Encode(rf.yyy)
-	// raftstate := w.Bytes()
-	// rf.persister.Save(raftstate, nil)
+	w := new(bytes.Buffer)
+	e := labgob.NewEncoder(w)
+	e.Encode(rf.currentTerm)
+	e.Encode(rf.votedFor)
+	e.Encode(rf.log)
+	data := w.Bytes()
+	rf.persister.Save(data, nil)
+	DPrintf("server %d persist data in term %d\n", rf.me, rf.currentTerm)
 }
 
 // restore previously persisted state.
@@ -127,19 +131,13 @@ func (rf *Raft) readPersist(data []byte) {
 	if data == nil || len(data) < 1 { // bootstrap without any state?
 		return
 	}
-	// Your code here (2C).
-	// Example:
-	// r := bytes.NewBuffer(data)
-	// d := labgob.NewDecoder(r)
-	// var xxx
-	// var yyy
-	// if d.Decode(&xxx) != nil ||
-	//    d.Decode(&yyy) != nil {
-	//   error...
-	// } else {
-	//   rf.xxx = xxx
-	//   rf.yyy = yyy
-	// }
+	r := bytes.NewBuffer(data)
+	d := labgob.NewDecoder(r)
+	rf.mu.Lock()
+	d.Decode(&rf.currentTerm)
+	d.Decode(&rf.votedFor)
+	d.Decode(&rf.log)
+	rf.mu.Unlock()
 }
 
 // the service says it has created a snapshot that has
@@ -190,7 +188,6 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	DPrintf("server %d receive RequestVote from server %d in term %d\n", rf.me, args.CandidateId, args.Term)
 	reply.Term = rf.currentTerm
 	reply.VoteGranted = false
-
 	if args.Term < rf.currentTerm {
 		// 如果请求的任期小于当前任期，则拒绝投票
 		return
@@ -200,6 +197,7 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 		rf.currentTerm = args.Term
 		rf.state = Follower
 		rf.votedFor = -1
+		rf.persist()
 	}
 	if rf.votedFor == -1 || rf.votedFor == args.CandidateId {
 		// 如果当前节点没有投票或者已经投票给了请求的节点，则投票给请求的节点
@@ -212,6 +210,7 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 		if args.LastLogTerm > lastLogTerm || (args.LastLogTerm == lastLogTerm && args.LastLogIndex >= len(rf.log)) {
 			reply.VoteGranted = true
 			rf.votedFor = args.CandidateId
+			rf.persist()
 			// 重置选举超时时间
 			rf.resetElectionTime()
 			DPrintf("server %d vote for server %d in term %d\n", rf.me, args.CandidateId, args.Term)
@@ -234,6 +233,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		rf.currentTerm = args.Term
 		rf.state = Follower
 		rf.votedFor = -1
+		rf.persist()
 	}
 	// 重置选举超时时间
 	rf.resetElectionTime()
@@ -248,6 +248,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		rf.commitIndex = min(args.LeaderCommit, len(rf.log)-1)
 	}
 	reply.Success = true
+	rf.persist()
 }
 
 // example code to send a RequestVote RPC to a server.
@@ -317,6 +318,7 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 		Term:    rf.currentTerm,
 		Command: command,
 	})
+	rf.persist()
 	term = rf.currentTerm
 	DPrintf("server %d receive client request, append log in term %d, index %d\n", rf.me, term, index)
 	return index, term, isLeader
@@ -369,9 +371,7 @@ func (rf *Raft) appendEntriesTicker() {
 					LeaderCommit: rf.commitIndex,
 					Entries:      rf.log[rf.nextIndex[i]:],
 					PrevLogIndex: rf.nextIndex[i] - 1,
-				}
-				if args.PrevLogIndex > 0 {
-					args.PrevLogTerm = rf.log[args.PrevLogIndex].Term
+					PrevLogTerm:  rf.log[rf.nextIndex[i]-1].Term,
 				}
 				go func(server int, args *AppendEntriesArgs) {
 					reply := AppendEntriesReply{}
@@ -382,6 +382,10 @@ func (rf *Raft) appendEntriesTicker() {
 						if rf.state != Leader {
 							return
 						}
+						// 如果心跳的任期小于当前任期，则不需要处理,说明是过期的心跳
+						if reply.Term < rf.currentTerm {
+							return
+						}
 						// 发现更高的任期，则转变为Follower
 						if rf.currentTerm < reply.Term {
 							rf.state = Follower
@@ -389,11 +393,14 @@ func (rf *Raft) appendEntriesTicker() {
 							rf.votedFor = -1
 							DPrintf("server %d find higher term %d,so become Follower in term %d\n",
 								rf.me, reply.Term, rf.currentTerm)
+							rf.persist()
 							return
 						}
 						// 如果心跳成功，则更新nextIndex和matchIndex
 						if reply.Success {
-							rf.nextIndex[server] += len(args.Entries)
+							// 下面这样的写话会有问题，由于网络不稳定，当过期的rpc心跳回复时，会导致nextIndex[server]被多次更新
+							// rf.nextIndex[server] += len(args.Entries)
+							rf.nextIndex[server] = args.PrevLogIndex + len(args.Entries) + 1
 							rf.matchIndex[server] = rf.nextIndex[server] - 1
 							// 找到一个N，使得大多数的matchIndex[i] >= N，并且log[N].term == currentTerm
 							// 其实就是中位数，这里使用O(nlogN)的解法，即排序，中间的那个就是答案N/2
@@ -408,7 +415,7 @@ func (rf *Raft) appendEntriesTicker() {
 						} else {
 							// 如果心跳失败，则将nextIndex减1，重新发送心跳
 							// 如果优化的话，则不是将nextIndex减1，将回退一个term，即找到第一个term不同的地方
-							// 证明的话看论文或者谷歌
+							// 证明的话看学生指南
 							prevIndex := args.PrevLogIndex
 							for prevIndex > 0 && rf.log[prevIndex].Term == args.PrevLogTerm {
 								prevIndex--
@@ -439,6 +446,7 @@ func (rf *Raft) ticker() {
 				rf.currentTerm++
 				// 投票给自己
 				rf.votedFor = rf.me
+				rf.persist()
 				DPrintf("server %d start election, from Follower to Candidate in term %d\n", rf.me, rf.currentTerm)
 				lastLogIndex := len(rf.log)
 				lastLogTerm := 0
@@ -503,6 +511,7 @@ func (rf *Raft) ticker() {
 					rf.state = Follower
 					rf.currentTerm = otherTerm
 					rf.votedFor = -1
+					rf.persist()
 					DPrintf("server %d become Follower in term %d\n", rf.me, rf.currentTerm)
 				} else if voteNum > len(rf.peers)/2 {
 					// 如果获得大多数投票，则转变为Leader
@@ -550,6 +559,9 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.log[0] = LogEntry{}
 	rf.nextIndex = make([]int, len(peers))
 	rf.matchIndex = make([]int, len(peers))
+	for i := 0; i < len(peers); i++ {
+		rf.nextIndex[i] = len(rf.log)
+	}
 	rf.resetElectionTime()
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
