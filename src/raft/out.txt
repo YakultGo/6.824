@@ -1,0 +1,751 @@
+Test (2D): install snapshots (disconnect) ...
+2024/01/29 20:01:04 server 2 start election, from Follower to Candidate in term 1
+2024/01/29 20:01:04 server 1 receive RequestVote from server 2 in term 1
+2024/01/29 20:01:04 server 0 receive RequestVote from server 2 in term 1
+2024/01/29 20:01:04 server 0 vote for server 2 in term 1
+2024/01/29 20:01:04 server 1 vote for server 2 in term 1
+2024/01/29 20:01:04 server 2 become Leader in term 1
+2024/01/29 20:01:04 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:04 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:04 server 2 receive client request, append log in term 1, index 1
+2024/01/29 20:01:04 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:04 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:04 server 2 update commitIndex from 0 to 1
+2024/01/29 20:01:04 server 2 apply log in term 1, index 0
+2024/01/29 20:01:05 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 1 apply log in term 1, index 0
+2024/01/29 20:01:05 server 0 apply log in term 1, index 0
+2024/01/29 20:01:05 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 2 receive client request, append log in term 1, index 2
+2024/01/29 20:01:05 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 2 update commitIndex from 1 to 2
+2024/01/29 20:01:05 server 2 apply log in term 1, index 1
+2024/01/29 20:01:05 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 1 apply log in term 1, index 1
+2024/01/29 20:01:05 server 2 receive client request, append log in term 1, index 3
+2024/01/29 20:01:05 server 2 receive client request, append log in term 1, index 4
+2024/01/29 20:01:05 server 2 receive client request, append log in term 1, index 5
+2024/01/29 20:01:05 server 2 receive client request, append log in term 1, index 6
+2024/01/29 20:01:05 server 2 receive client request, append log in term 1, index 7
+2024/01/29 20:01:05 server 2 receive client request, append log in term 1, index 8
+2024/01/29 20:01:05 server 2 receive client request, append log in term 1, index 9
+2024/01/29 20:01:05 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 2 update commitIndex from 2 to 9
+2024/01/29 20:01:05 server 2 apply log in term 1, index 2
+2024/01/29 20:01:05 server 2 apply log in term 1, index 3
+2024/01/29 20:01:05 server 2 apply log in term 1, index 4
+2024/01/29 20:01:05 server 2 apply log in term 1, index 5
+2024/01/29 20:01:05 server 2 apply log in term 1, index 6
+2024/01/29 20:01:05 server 2 apply log in term 1, index 7
+2024/01/29 20:01:05 server 2 apply log in term 1, index 8
+2024/01/29 20:01:05 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:05 server 1 apply log in term 1, index 2
+2024/01/29 20:01:05 server 1 apply log in term 1, index 3
+2024/01/29 20:01:05 server 1 apply log in term 1, index 4
+2024/01/29 20:01:05 server 1 apply log in term 1, index 5
+2024/01/29 20:01:05 server 1 apply log in term 1, index 6
+2024/01/29 20:01:05 server 1 apply log in term 1, index 7
+2024/01/29 20:01:05 server 1 apply log in term 1, index 8
+2024/01/29 20:01:05 server 2 receive client request, append log in term 1, index 10
+2024/01/29 20:01:06 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:06 server 2 update commitIndex from 9 to 10
+2024/01/29 20:01:06 server 2 apply log in term 1, index 9
+2024/01/29 20:01:06 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:06 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:06 server 0 apply log in term 1, index 9
+2024/01/29 20:01:06 server 1 apply log in term 1, index 9
+2024/01/29 20:01:06 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:06 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:06 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:06 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:06 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:06 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:06 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:06 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:07 server 0 start election, from Follower to Candidate in term 2
+2024/01/29 20:01:07 server 1 receive RequestVote from server 0 in term 2
+2024/01/29 20:01:07 server 1 vote for server 0 in term 2
+2024/01/29 20:01:07 server 0 become Leader in term 2
+2024/01/29 20:01:07 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 0 receive client request, append log in term 2, index 11
+2024/01/29 20:01:07 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 0 update commitIndex from 10 to 11
+2024/01/29 20:01:07 server 0 apply log in term 2, index 10
+2024/01/29 20:01:07 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 1 apply log in term 2, index 10
+2024/01/29 20:01:07 server 0 receive client request, append log in term 2, index 12
+2024/01/29 20:01:07 server 0 receive client request, append log in term 2, index 13
+2024/01/29 20:01:07 server 0 receive client request, append log in term 2, index 14
+2024/01/29 20:01:07 server 0 receive client request, append log in term 2, index 15
+2024/01/29 20:01:07 server 0 receive client request, append log in term 2, index 16
+2024/01/29 20:01:07 server 0 receive client request, append log in term 2, index 17
+2024/01/29 20:01:07 server 0 receive client request, append log in term 2, index 18
+2024/01/29 20:01:07 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 0 update commitIndex from 11 to 18
+2024/01/29 20:01:07 server 0 apply log in term 2, index 11
+2024/01/29 20:01:07 server 0 apply log in term 2, index 12
+2024/01/29 20:01:07 server 0 apply log in term 2, index 13
+2024/01/29 20:01:07 server 0 apply log in term 2, index 14
+2024/01/29 20:01:07 server 0 apply log in term 2, index 15
+2024/01/29 20:01:07 server 0 apply log in term 2, index 16
+2024/01/29 20:01:07 server 0 apply log in term 2, index 17
+2024/01/29 20:01:07 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 1 apply log in term 2, index 11
+2024/01/29 20:01:07 server 1 apply log in term 2, index 12
+2024/01/29 20:01:07 server 1 apply log in term 2, index 13
+2024/01/29 20:01:07 server 1 apply log in term 2, index 14
+2024/01/29 20:01:07 server 1 apply log in term 2, index 15
+2024/01/29 20:01:07 server 1 apply log in term 2, index 16
+2024/01/29 20:01:07 server 1 apply log in term 2, index 17
+2024/01/29 20:01:07 server 2 receive client request, append log in term 1, index 11
+2024/01/29 20:01:07 server 1 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:07 server 0 receive AppendEntries from server 2 in term 1
+2024/01/29 20:01:07 server 2 find higher term 2,so become Follower in term 2
+2024/01/29 20:01:07 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 2 apply log in term 2, index 10
+2024/01/29 20:01:07 server 2 apply log in term 2, index 11
+2024/01/29 20:01:07 server 2 apply log in term 2, index 12
+2024/01/29 20:01:07 server 2 apply log in term 2, index 13
+2024/01/29 20:01:07 server 2 apply log in term 2, index 14
+2024/01/29 20:01:07 server 2 apply log in term 2, index 15
+2024/01/29 20:01:07 server 2 apply log in term 2, index 16
+2024/01/29 20:01:07 server 2 apply log in term 2, index 17
+2024/01/29 20:01:07 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:07 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:08 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 0 receive client request, append log in term 2, index 19
+2024/01/29 20:01:09 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 0 update commitIndex from 18 to 19
+2024/01/29 20:01:09 server 0 apply log in term 2, index 18
+2024/01/29 20:01:09 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 1 apply log in term 2, index 18
+2024/01/29 20:01:09 server 2 apply log in term 2, index 18
+2024/01/29 20:01:09 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:09 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:10 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:10 server 1 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 20
+2024/01/29 20:01:10 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:10 server 0 update commitIndex from 19 to 20
+2024/01/29 20:01:10 server 0 apply log in term 2, index 19
+2024/01/29 20:01:10 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:10 server 2 apply log in term 2, index 19
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 21
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 22
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 23
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 24
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 25
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 26
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 27
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 28
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 29
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 30
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 31
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 32
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 33
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 34
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 35
+2024/01/29 20:01:10 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:10 server 0 update commitIndex from 20 to 35
+2024/01/29 20:01:10 server 0 apply log in term 2, index 20
+2024/01/29 20:01:10 server 0 apply log in term 2, index 21
+2024/01/29 20:01:10 server 0 apply log in term 2, index 22
+2024/01/29 20:01:10 server 0 apply log in term 2, index 23
+2024/01/29 20:01:10 server 0 apply log in term 2, index 24
+2024/01/29 20:01:10 server 0 apply log in term 2, index 25
+2024/01/29 20:01:10 server 0 apply log in term 2, index 26
+2024/01/29 20:01:10 server 0 apply log in term 2, index 27
+2024/01/29 20:01:10 server 0 apply log in term 2, index 28
+2024/01/29 20:01:10 server 0 apply log in term 2, index 29
+2024/01/29 20:01:10 server 0 apply log in term 2, index 30
+2024/01/29 20:01:10 server 0 apply log in term 2, index 31
+2024/01/29 20:01:10 server 0 apply log in term 2, index 32
+2024/01/29 20:01:10 server 0 apply log in term 2, index 33
+2024/01/29 20:01:10 server 0 apply log in term 2, index 34
+2024/01/29 20:01:10 server 1 start election, from Follower to Candidate in term 3
+2024/01/29 20:01:10 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:10 server 2 apply log in term 2, index 20
+2024/01/29 20:01:10 server 2 apply log in term 2, index 21
+2024/01/29 20:01:10 server 2 apply log in term 2, index 22
+2024/01/29 20:01:10 server 2 apply log in term 2, index 23
+2024/01/29 20:01:10 server 2 apply log in term 2, index 24
+2024/01/29 20:01:10 server 2 apply log in term 2, index 25
+2024/01/29 20:01:10 server 2 apply log in term 2, index 26
+2024/01/29 20:01:10 server 2 apply log in term 2, index 27
+2024/01/29 20:01:10 server 2 apply log in term 2, index 28
+2024/01/29 20:01:10 server 2 apply log in term 2, index 29
+2024/01/29 20:01:10 server 2 apply log in term 2, index 30
+2024/01/29 20:01:10 server 2 apply log in term 2, index 31
+2024/01/29 20:01:10 server 2 apply log in term 2, index 32
+2024/01/29 20:01:10 server 2 apply log in term 2, index 33
+2024/01/29 20:01:10 server 2 apply log in term 2, index 34
+2024/01/29 20:01:10 server 0 receive client request, append log in term 2, index 36
+2024/01/29 20:01:10 server 2 receive AppendEntries from server 0 in term 2
+2024/01/29 20:01:10 server 2 start election, from Follower to Candidate in term 3
+2024/01/29 20:01:10 server 1 receive RequestVote from server 2 in term 3
+2024/01/29 20:01:10 server 0 receive RequestVote from server 2 in term 3
+2024/01/29 20:01:10 server 0 vote for server 2 in term 3
+2024/01/29 20:01:10 server 2 become Leader in term 3
+2024/01/29 20:01:10 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:10 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:10 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:10 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:11 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 2 receive client request, append log in term 3, index 37
+2024/01/29 20:01:12 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 2 update commitIndex from 35 to 37
+2024/01/29 20:01:12 server 2 apply log in term 3, index 35
+2024/01/29 20:01:12 server 2 apply log in term 3, index 36
+2024/01/29 20:01:12 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 0 apply log in term 3, index 35
+2024/01/29 20:01:12 server 0 apply log in term 3, index 36
+2024/01/29 20:01:12 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:12 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:13 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 2 receive client request, append log in term 3, index 38
+2024/01/29 20:01:14 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 2 update commitIndex from 37 to 38
+2024/01/29 20:01:14 server 2 apply log in term 3, index 37
+2024/01/29 20:01:14 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 0 apply log in term 3, index 37
+2024/01/29 20:01:14 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:14 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:15 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 2 receive client request, append log in term 3, index 39
+2024/01/29 20:01:16 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 2 update commitIndex from 38 to 39
+2024/01/29 20:01:16 server 2 apply log in term 3, index 38
+2024/01/29 20:01:16 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 0 apply log in term 3, index 38
+2024/01/29 20:01:16 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:16 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 40
+2024/01/29 20:01:17 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 2 update commitIndex from 39 to 40
+2024/01/29 20:01:17 server 2 apply log in term 3, index 39
+2024/01/29 20:01:17 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 1 apply log in term 3, index 39
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 41
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 42
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 43
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 44
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 45
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 46
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 47
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 48
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 49
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 50
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 51
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 52
+2024/01/29 20:01:17 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 2 update commitIndex from 40 to 52
+2024/01/29 20:01:17 server 2 apply log in term 3, index 40
+2024/01/29 20:01:17 server 2 apply log in term 3, index 41
+2024/01/29 20:01:17 server 2 apply log in term 3, index 42
+2024/01/29 20:01:17 server 2 apply log in term 3, index 43
+2024/01/29 20:01:17 server 2 apply log in term 3, index 44
+2024/01/29 20:01:17 server 2 apply log in term 3, index 45
+2024/01/29 20:01:17 server 2 apply log in term 3, index 46
+2024/01/29 20:01:17 server 2 apply log in term 3, index 47
+2024/01/29 20:01:17 server 2 apply log in term 3, index 48
+2024/01/29 20:01:17 server 2 apply log in term 3, index 49
+2024/01/29 20:01:17 server 2 apply log in term 3, index 50
+2024/01/29 20:01:17 server 2 apply log in term 3, index 51
+2024/01/29 20:01:17 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 1 apply log in term 3, index 40
+2024/01/29 20:01:17 server 1 apply log in term 3, index 41
+2024/01/29 20:01:17 server 1 apply log in term 3, index 42
+2024/01/29 20:01:17 server 1 apply log in term 3, index 43
+2024/01/29 20:01:17 server 1 apply log in term 3, index 44
+2024/01/29 20:01:17 server 1 apply log in term 3, index 45
+2024/01/29 20:01:17 server 1 apply log in term 3, index 46
+2024/01/29 20:01:17 server 1 apply log in term 3, index 47
+2024/01/29 20:01:17 server 1 apply log in term 3, index 48
+2024/01/29 20:01:17 server 1 apply log in term 3, index 49
+2024/01/29 20:01:17 server 1 apply log in term 3, index 50
+2024/01/29 20:01:17 server 1 apply log in term 3, index 51
+2024/01/29 20:01:17 server 2 receive client request, append log in term 3, index 53
+2024/01/29 20:01:17 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 2 update commitIndex from 52 to 53
+2024/01/29 20:01:17 server 2 apply log in term 3, index 52
+2024/01/29 20:01:17 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 0 apply log in term 3, index 49
+2024/01/29 20:01:17 server 0 apply log in term 3, index 50
+2024/01/29 20:01:17 server 0 apply log in term 3, index 51
+2024/01/29 20:01:17 server 0 apply log in term 3, index 52
+2024/01/29 20:01:17 server 1 apply log in term 3, index 52
+2024/01/29 20:01:17 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:17 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:18 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:18 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:18 server 1 start election, from Follower to Candidate in term 4
+2024/01/29 20:01:18 server 0 receive RequestVote from server 1 in term 4
+2024/01/29 20:01:18 server 0 vote for server 1 in term 4
+2024/01/29 20:01:18 server 1 become Leader in term 4
+2024/01/29 20:01:18 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:18 server 1 receive client request, append log in term 4, index 54
+2024/01/29 20:01:18 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:18 server 1 update commitIndex from 53 to 54
+2024/01/29 20:01:18 server 1 apply log in term 4, index 53
+2024/01/29 20:01:18 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:18 server 0 apply log in term 4, index 53
+2024/01/29 20:01:18 server 1 receive client request, append log in term 4, index 55
+2024/01/29 20:01:18 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:18 server 1 update commitIndex from 54 to 55
+2024/01/29 20:01:18 server 1 apply log in term 4, index 54
+2024/01/29 20:01:18 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:18 server 0 apply log in term 4, index 54
+2024/01/29 20:01:18 server 1 receive client request, append log in term 4, index 56
+2024/01/29 20:01:18 server 1 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:18 server 0 receive AppendEntries from server 2 in term 3
+2024/01/29 20:01:18 server 2 find higher term 4,so become Follower in term 4
+2024/01/29 20:01:18 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:18 server 2 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:18 server 1 update commitIndex from 55 to 56
+2024/01/29 20:01:18 server 2 apply log in term 4, index 53
+2024/01/29 20:01:18 server 2 apply log in term 4, index 54
+2024/01/29 20:01:18 server 1 apply log in term 4, index 55
+2024/01/29 20:01:19 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 2 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 0 apply log in term 4, index 55
+2024/01/29 20:01:19 server 2 apply log in term 4, index 55
+2024/01/29 20:01:19 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 2 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 2 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 2 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 2 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 57
+2024/01/29 20:01:19 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 1 update commitIndex from 56 to 57
+2024/01/29 20:01:19 server 1 apply log in term 4, index 56
+2024/01/29 20:01:19 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 0 apply log in term 4, index 56
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 58
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 59
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 60
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 61
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 62
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 63
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 64
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 65
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 66
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 67
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 68
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 69
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 70
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 71
+2024/01/29 20:01:19 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 1 update commitIndex from 57 to 71
+2024/01/29 20:01:19 server 1 apply log in term 4, index 57
+2024/01/29 20:01:19 server 1 apply log in term 4, index 58
+2024/01/29 20:01:19 server 1 apply log in term 4, index 59
+2024/01/29 20:01:19 server 1 apply log in term 4, index 60
+2024/01/29 20:01:19 server 1 apply log in term 4, index 61
+2024/01/29 20:01:19 server 1 apply log in term 4, index 62
+2024/01/29 20:01:19 server 1 apply log in term 4, index 63
+2024/01/29 20:01:19 server 1 apply log in term 4, index 64
+2024/01/29 20:01:19 server 1 apply log in term 4, index 65
+2024/01/29 20:01:19 server 1 apply log in term 4, index 66
+2024/01/29 20:01:19 server 1 apply log in term 4, index 67
+2024/01/29 20:01:19 server 1 apply log in term 4, index 68
+2024/01/29 20:01:19 server 1 apply log in term 4, index 69
+2024/01/29 20:01:19 server 1 apply log in term 4, index 70
+2024/01/29 20:01:19 server 2 start election, from Follower to Candidate in term 5
+2024/01/29 20:01:19 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:19 server 0 apply log in term 4, index 57
+2024/01/29 20:01:19 server 0 apply log in term 4, index 58
+2024/01/29 20:01:19 server 0 apply log in term 4, index 59
+2024/01/29 20:01:19 server 0 apply log in term 4, index 60
+2024/01/29 20:01:19 server 0 apply log in term 4, index 61
+2024/01/29 20:01:19 server 0 apply log in term 4, index 62
+2024/01/29 20:01:19 server 0 apply log in term 4, index 63
+2024/01/29 20:01:19 server 0 apply log in term 4, index 64
+2024/01/29 20:01:19 server 0 apply log in term 4, index 65
+2024/01/29 20:01:19 server 0 apply log in term 4, index 66
+2024/01/29 20:01:19 server 0 apply log in term 4, index 67
+2024/01/29 20:01:19 server 0 apply log in term 4, index 68
+2024/01/29 20:01:19 server 0 apply log in term 4, index 69
+2024/01/29 20:01:19 server 0 apply log in term 4, index 70
+2024/01/29 20:01:19 server 1 receive client request, append log in term 4, index 72
+2024/01/29 20:01:19 server 0 receive AppendEntries from server 1 in term 4
+2024/01/29 20:01:20 server 1 start election, from Follower to Candidate in term 6
+2024/01/29 20:01:20 server 2 receive RequestVote from server 1 in term 6
+2024/01/29 20:01:20 server 0 receive RequestVote from server 1 in term 6
+2024/01/29 20:01:20 server 0 vote for server 1 in term 6
+2024/01/29 20:01:20 server 2 vote for server 1 in term 6
+2024/01/29 20:01:20 server 1 become Leader in term 6
+2024/01/29 20:01:20 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:20 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:20 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:20 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:20 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:20 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:20 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:20 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:20 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:20 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:21 server 1 receive client request, append log in term 6, index 73
+2024/01/29 20:01:22 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 1 update commitIndex from 71 to 73
+2024/01/29 20:01:22 server 1 apply log in term 6, index 71
+2024/01/29 20:01:22 server 1 apply log in term 6, index 72
+2024/01/29 20:01:22 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 0 apply log in term 6, index 71
+2024/01/29 20:01:22 server 0 apply log in term 6, index 72
+2024/01/29 20:01:22 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:22 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:23 server 1 receive client request, append log in term 6, index 74
+2024/01/29 20:01:24 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 1 update commitIndex from 73 to 74
+2024/01/29 20:01:24 server 1 apply log in term 6, index 73
+2024/01/29 20:01:24 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 0 apply log in term 6, index 73
+2024/01/29 20:01:24 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:24 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:25 server 1 receive client request, append log in term 6, index 75
+2024/01/29 20:01:26 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 1 update commitIndex from 74 to 75
+2024/01/29 20:01:26 server 1 apply log in term 6, index 74
+2024/01/29 20:01:26 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 0 apply log in term 6, index 74
+2024/01/29 20:01:26 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:26 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:27 server 1 receive client request, append log in term 6, index 76
+2024/01/29 20:01:28 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 1 update commitIndex from 75 to 76
+2024/01/29 20:01:28 server 1 apply log in term 6, index 75
+2024/01/29 20:01:28 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 0 apply log in term 6, index 75
+2024/01/29 20:01:28 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:28 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 0 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 2 receive AppendEntries from server 1 in term 6
+2024/01/29 20:01:29 server 0 receive AppendEntries from server 1 in term 6
+--- FAIL: TestSnapshotInstall2D (25.51s)
+    config.go:601: one(7140374076527405386) failed to reach agreement
+FAIL
+exit status 1
+FAIL	src/raft	25.839s
